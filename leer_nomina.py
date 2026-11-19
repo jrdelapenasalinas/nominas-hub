@@ -183,10 +183,13 @@ def mostrar(recibo):
     print(f"UUID:           {uuid[:8]}...")
     print(f"Periodo:        {recibo['fecha_inicial_pago']} a {recibo['fecha_final_pago']}"
           f"  (pago: {recibo['fecha_pago']})")
-    print("Percepciones:")
+    print(f"{'Percepciones:':<37}{'Gravado':>12} {'Exento':>12} {'Total':>12}")
     for p in recibo["percepciones"]:
-        total = p["importe_gravado"] + p["importe_exento"]
-        print(f"  [{p['tipo']}] {p['clave']} {p['concepto']:<28} {total:>12,.2f}")
+        g = p["importe_gravado"]
+        e = p["importe_exento"]
+        print(f"  [{p['tipo']}] {p['clave']} {p['concepto'][:24]:<24} {g:>12,.2f} {e:>12,.2f} {g + e:>12,.2f}")
+    print(f"  {'Totales':<34} {recibo['total_gravado']:>12,.2f} "
+          f"{recibo['total_exento']:>12,.2f} {recibo['total_percepciones']:>12,.2f}")
     print("Deducciones:")
     for d in recibo["deducciones"]:
         print(f"  [{d['tipo']}] {d['clave']} {d['concepto']:<28} {d['importe']:>12,.2f}")

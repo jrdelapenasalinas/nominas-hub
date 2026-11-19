@@ -199,6 +199,8 @@ def mostrar(recibo):
             print(f"  [{o['tipo']}] {o['clave']} {o['concepto']:<28} {o['importe']:>12,.2f}")
     print(f"Total percepciones: {recibo['total_percepciones']:>12,.2f}")
     print(f"Total deducciones:  {recibo['total_deducciones']:>12,.2f}")
+    print(f"  Descuentos:       {recibo['total_otras_deducciones']:>12,.2f}")
+    print(f"  Retenciones:      {recibo['total_impuestos_retenidos']:>12,.2f}")
     print(f"Neto pagado:        {recibo['total']:>12,.2f}")
 
     avisos = validar(recibo)
